@@ -1,4 +1,4 @@
-using Library.Infrastructure.Data;
+using Library.Infrastructure.Data; // A Vérifier !
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +12,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<LibraryContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("azureConnection")!));
+builder.Configuration.GetConnectionString("azureConnection")!));
+
 
 var app = builder.Build();
 

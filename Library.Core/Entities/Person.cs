@@ -1,0 +1,13 @@
+﻿using Library.Core.SeedWork;
+
+namespace Library.Core.Entities
+{
+    public abstract class Person: Entity
+    {
+        public string Firstname { get; set; } = null!;
+        public string Lastname { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Phone { get; set; } = null!;
+
+    }
+}
