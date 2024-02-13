@@ -1,10 +1,10 @@
 ﻿using ContosoUniversity.Data;
-using Library.Core.SeedWork;
+using SeedWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library.Infrastructure.Data
 {
-    internal class EntityFrameworkRepository<T> : IRepository<T> where T : class, IAggregateRoot
+    public class EntityFrameworkRepository<T> : IRepository<T> where T : Entity
     {
         // ----------------------------------------------------------
         protected LibraryContext Context { get; }

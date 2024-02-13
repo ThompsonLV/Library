@@ -1,5 +1,4 @@
-﻿using Library.Core.SeedWork;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity.Data
 {

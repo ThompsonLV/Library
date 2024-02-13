@@ -1,6 +1,6 @@
-﻿using Library.Core.SeedWork;
+﻿using SeedWork;
 
-namespace Library.Core.Entities
+namespace Library.Entities
 {
     public abstract class Person: Entity
     {

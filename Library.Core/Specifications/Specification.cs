@@ -1,4 +1,4 @@
-﻿using Library.Core.SeedWork;
+﻿using SeedWork;
 using System.Linq.Expressions;
 
 namespace Library.Core.Specifications;

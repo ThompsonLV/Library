@@ -1,4 +1,4 @@
-﻿namespace Library.Core.SeedWork
+﻿namespace SeedWork
 {
     public abstract class Entity
     {

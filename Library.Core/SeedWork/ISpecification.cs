@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Core.SeedWork
+namespace SeedWork
 {
     public interface ISpecification<T>
     {

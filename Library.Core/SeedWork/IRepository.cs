@@ -1,6 +1,6 @@
-﻿namespace Library.Core.SeedWork
+﻿namespace SeedWork
 {
-    public interface IRepository<T> where T : IAggregateRoot
+    public interface IRepository<T> where T : Entity
     {
         Task<T?> GetById(int id);
         Task<T?> GetSingle(ISpecification<T> specification);
