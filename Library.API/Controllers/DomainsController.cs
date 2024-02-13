@@ -25,7 +25,8 @@ namespace Library.API.Controllers
         // GET: api/Domains
         [HttpGet]
         public async Task<IEnumerable<Domain>> GetDomains()
-        {
+        {   
+
             return await _repository.ListAll();
         }
 
