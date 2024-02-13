@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<LibraryContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("azureConnection")!));
+        builder.Configuration.GetConnectionString("localConnection")!));
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
