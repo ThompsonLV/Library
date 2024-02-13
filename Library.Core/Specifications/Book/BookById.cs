@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Core.Specifications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Library.Specifications
 {
-    public class AuthorByIdWithBooks : AuthorById
+    public class BookById : Specification<Book>
     {
-        public AuthorByIdWithBooks(int id) : base(id)
+        public BookById(int id) : base(b => b.Id == id)
         {
-            AddInclude(b => b.Books);
         }
     }
 }

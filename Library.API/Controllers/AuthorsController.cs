@@ -65,10 +65,10 @@ namespace Library.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthor(int id)
         {
-            var Author = await _repository.GetById(id);
-            if (Author == null) return NotFound();
+            var author = await _repository.GetById(id);
+            if (author == null) return NotFound();
 
-            await _repository.Delete(Author);
+            await _repository.Delete(author);
 
             return NoContent();
         }

@@ -20,6 +20,10 @@ public abstract class Specification<T> : ISpecification<T>
         Criteria = criteria;
     }
 
+    protected Specification()
+    {
+    }
+
     protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
     {
         Includes.Add(includeExpression);

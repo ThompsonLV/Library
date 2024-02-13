@@ -1,4 +1,4 @@
-﻿using SeedWork;
+﻿using System.Text.Json.Serialization;
 
 namespace Library.Entities
 {
@@ -6,9 +6,9 @@ namespace Library.Entities
     {
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
-
-        readonly List<Book> _books = new List<Book>();
-        public IReadOnlyCollection<Book> Books => _books.AsReadOnly();
+        [JsonIgnore]
+        public List<Book> Books { get; set; }
+       // public IReadOnlyCollection<Book> Books => _books.AsReadOnly();
 
     }
 }
