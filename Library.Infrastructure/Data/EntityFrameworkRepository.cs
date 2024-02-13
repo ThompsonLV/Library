@@ -34,9 +34,10 @@ namespace Library.Infrastructure.Data
             return await Context.Set<T>().ToListAsync();
         }
 
-        public Task Delete(T entity)
+        public async Task Delete(T entity)
         {
-            throw new NotImplementedException();
+            Context.Remove(entity);
+            await Context.SaveChangesAsync();
         }
 
 
