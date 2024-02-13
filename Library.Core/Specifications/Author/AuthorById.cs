@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Library.Specifications
 {
-    public class AuthorById : Specification<Domain>
+    public class AuthorById : Specification<Author>
     {
-        public AuthorById(int id) : base(d => d.Id == id)
+        public AuthorById(int id) : base(a => a.Id == id)
         {
         }
     }

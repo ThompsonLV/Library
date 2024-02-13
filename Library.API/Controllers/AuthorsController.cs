@@ -34,36 +34,36 @@ namespace Library.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Author>> GetAuthor(int id)
         {
-            var Author = await _repository.GetSingle(new AuthorByIdWithBooks(id));
+            var author = await _repository.GetSingle(new AuthorByIdWithBooks(id));
 
-            if (Author == null) return NotFound();
+            if (author == null) return NotFound();
 
-            return Author;
+            return author;
         }
 
         // PUT: api/Authors/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuthor(int id, Author Author)
+        public async Task<IActionResult> PutAuthor(int id, Author author)
         {
-            if (id != Author.Id) return BadRequest();
+            if (id != author.Id) return BadRequest();
 
-            await _repository.Update(Author);
+            await _repository.Update(author);
 
             return NoContent();
         }
 
         // POST: api/Authors
         [HttpPost]
-        public async Task<ActionResult<Author>> PostDomain(Author Author)
+        public async Task<ActionResult<Author>> PostAuthor(Author author)
         {
-            await _repository.Insert(Author);
+            await _repository.Insert(author);
 
-            return CreatedAtAction("GetDomain", new { id = Author.Id }, Author);
+            return CreatedAtAction("GetAuthor", new { id = author.Id }, author);
         }
 
         // DELETE: api/Authors/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDomain(int id)
+        public async Task<IActionResult> DeleteAuthor(int id)
         {
             var Author = await _repository.GetById(id);
             if (Author == null) return NotFound();
