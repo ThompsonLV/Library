@@ -39,8 +39,6 @@ namespace Library.Infrastructure.Data
             throw new NotImplementedException();
         }
 
-
-
         public async Task<T> Insert(T entity)
         {
             Context.Add(entity);
