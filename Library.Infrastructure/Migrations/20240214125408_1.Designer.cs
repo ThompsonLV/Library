@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20240214123438_1")]
+    [Migration("20240214125408_1")]
     partial class _1
     {
         /// <inheritdoc />
@@ -245,7 +245,7 @@ namespace Library.Migrations
 
                     b.HasIndex("LectorId");
 
-                    b.ToTable("Rentails");
+                    b.ToTable("Rentals");
                 });
 
             modelBuilder.Entity("Library.Entities.Book", b =>

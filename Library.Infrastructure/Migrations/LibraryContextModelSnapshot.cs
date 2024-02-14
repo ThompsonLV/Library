@@ -242,7 +242,7 @@ namespace Library.Migrations
 
                     b.HasIndex("LectorId");
 
-                    b.ToTable("Rentails");
+                    b.ToTable("Rentals");
                 });
 
             modelBuilder.Entity("Library.Entities.Book", b =>

@@ -131,7 +131,7 @@ namespace Library.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rentails",
+                name: "Rentals",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -143,14 +143,14 @@ namespace Library.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rentails", x => x.Id);
+                    table.PrimaryKey("PK_Rentals", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rentails_Books_BookId",
+                        name: "FK_Rentals_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Rentails_Lectors_LectorId",
+                        name: "FK_Rentals_Lectors_LectorId",
                         column: x => x.LectorId,
                         principalTable: "Lectors",
                         principalColumn: "Id");
@@ -172,13 +172,13 @@ namespace Library.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rentails_BookId",
-                table: "Rentails",
+                name: "IX_Rentals_BookId",
+                table: "Rentals",
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rentails_LectorId",
-                table: "Rentails",
+                name: "IX_Rentals_LectorId",
+                table: "Rentals",
                 column: "LectorId");
         }
 
@@ -189,7 +189,7 @@ namespace Library.Migrations
                 name: "Admin");
 
             migrationBuilder.DropTable(
-                name: "Rentails");
+                name: "Rentals");
 
             migrationBuilder.DropTable(
                 name: "Books");

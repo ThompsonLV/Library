@@ -10,7 +10,7 @@ namespace Library.Infrastructure.Data
         public DbSet<Book> Books => Set<Book>();
         public DbSet<Domain> Domains => Set<Domain>();
         public DbSet<Lector> Lectors => Set<Lector>();
-        public DbSet<Rental> Rentails => Set<Rental>();
+        public DbSet<Rental> Rentals => Set<Rental>();
         public DbSet<Admin> Admin => Set<Admin>();
 
         public LibraryContext(DbContextOptions<LibraryContext> options) : base(options) { } // à voir pourquoi ?

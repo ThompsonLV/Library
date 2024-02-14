@@ -2,8 +2,6 @@
 {
     public class Lector: Person
     {
-        public string Password { get; set; } = null!;
-
         public Address Address { get; set; } = null!;
 
         readonly List<Rental> _rentals = new List<Rental>();
