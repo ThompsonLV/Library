@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,18 @@ builder.Services.AddScoped(
                typeof(IRepository<>),
                typeof(EntityFrameworkRepository<>));
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions
+            .AllowTrailingCommas = true;
+        options.JsonSerializerOptions
+            .PropertyNameCaseInsensitive = true;
+        options.JsonSerializerOptions
+            .ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
