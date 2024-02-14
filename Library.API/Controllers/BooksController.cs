@@ -10,6 +10,7 @@ using Library.Infrastructure.Data;
 using Library.Specifications;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Connections;
 
 namespace Library.Controllers
 {
@@ -30,6 +31,16 @@ namespace Library.Controllers
         public async Task<IEnumerable<Book>> GetBooks()
         {
             return await _repository.List(new BookListWithAuthorDomainRentals());
+        }
+
+        // GET: api/Books
+        [HttpGet("availableBooks")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IEnumerable<Book>> GetAvailableBooks()
+        {
+            var books = await _repository.List(new BookListWithAuthorDomainRentals());
+            books = books.Where(b => b.Rentals.Count == 0 || b.Rentals.Where(r => r.ReturnDate != null && r.ReturnDate <= DateTime.Now).Count() == 0).ToList();
+            return books;
         }
 
         // GET: api/Books/5
