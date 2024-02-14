@@ -1,6 +1,4 @@
-﻿using SeedWork;
-
-namespace Library.Entities
+﻿namespace Library.Entities
 {
     public class Admin : Person
     {
