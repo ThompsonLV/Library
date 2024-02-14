@@ -11,6 +11,7 @@ namespace Library.Specifications
         public LectorByIdWithRentailsAddress(int id) : base(id)
         {
             AddInclude(l => l.Rentals);
+            AddInclude("Rentals.Book");
             AddInclude(l => l.Address);
         }
     }

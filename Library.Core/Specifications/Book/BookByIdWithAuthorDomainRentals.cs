@@ -12,6 +12,7 @@ namespace Library.Specifications
         {
             AddInclude(b => b.Author);
             AddInclude(b => b.Rentals);
+            AddInclude("Rentals.Lector");
             AddInclude(b => b.Domain);
         }
     }

@@ -45,7 +45,7 @@ namespace Library.Controllers
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
             var book = await _repository.GetSingle(new BookByIdWithAuthorDomainRentals(id));

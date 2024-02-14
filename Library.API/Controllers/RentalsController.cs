@@ -32,6 +32,7 @@ namespace Library.API.Controllers
 
             return await _repository.List(new RentalListWithBookLector());
         }
+   
 
         // GET: api/Rentals/5
         [HttpGet("{id}")]
