@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Library.Infrastructure.Data;
 using SeedWork;
 using Library.Specifications;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library.API.Controllers
 {
@@ -24,6 +26,7 @@ namespace Library.API.Controllers
 
         // GET: api/Domains
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IEnumerable<Domain>> GetDomains()
         {   
 
@@ -32,6 +35,7 @@ namespace Library.API.Controllers
 
         // GET: api/Domains/5
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Domain>> GetDomain(int id)
         {
             var domain = await _repository.GetSingle(new DomainByIdWithBooks(id));
@@ -43,6 +47,7 @@ namespace Library.API.Controllers
 
         // PUT: api/Domains/5
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PutDomain(int id, Domain domain)
         {
             if (id != domain.Id) return BadRequest();
@@ -54,6 +59,7 @@ namespace Library.API.Controllers
 
         // POST: api/Domains
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Domain>> PostDomain(Domain domain)
         {
             await _repository.Insert(domain);
@@ -63,6 +69,7 @@ namespace Library.API.Controllers
 
         // DELETE: api/Domains/5
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteDomain(int id)
         {
             var domain = await _repository.GetById(id);

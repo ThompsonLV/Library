@@ -1,6 +1,6 @@
 ﻿namespace Library.Entities
 {
-    public class Rentail : Entity
+    public class Rental : Entity
     {
         public DateTime RentailDate { get; set; }
         public DateTime? ReturnDate { get; set;  }

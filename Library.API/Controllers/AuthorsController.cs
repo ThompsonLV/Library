@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Library.Infrastructure.Data;
 using SeedWork;
 using Library.Specifications;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library.Controllers
 {
@@ -24,6 +26,7 @@ namespace Library.Controllers
 
         // GET: api/Authors
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IEnumerable<Author>> GetAuthors()
         {
 
@@ -32,6 +35,7 @@ namespace Library.Controllers
 
         // GET: api/Authors/5
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Author>> GetAuthor(int id)
         {
             var author = await _repository.GetSingle(new AuthorByIdWithBooks(id));
@@ -43,6 +47,7 @@ namespace Library.Controllers
 
         // PUT: api/Authors/5
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PutAuthor(int id, Author author)
         {
             if (id != author.Id) return BadRequest();
@@ -54,6 +59,7 @@ namespace Library.Controllers
 
         // POST: api/Authors
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Author>> PostAuthor(Author author)
         {
             await _repository.Insert(author);
@@ -63,6 +69,7 @@ namespace Library.Controllers
 
         // DELETE: api/Authors/5
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteAuthor(int id)
         {
             var author = await _repository.GetById(id);

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Library.Entities;
 using Library.Infrastructure.Data;
 using Library.Specifications;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library.Controllers
 {
@@ -24,16 +26,18 @@ namespace Library.Controllers
 
         // GET: api/Books
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IEnumerable<Book>> GetBooks()
         {
-            return await _repository.List(new BookListWithAuthorDomainRentails());
+            return await _repository.List(new BookListWithAuthorDomainRentals());
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
-            var book = await _repository.GetSingle(new BookByIdWithAuthorDomainRentails(id));
+            var book = await _repository.GetSingle(new BookByIdWithAuthorDomainRentals(id));
 
             if (book == null) return NotFound();
 
@@ -43,6 +47,7 @@ namespace Library.Controllers
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PutBook(int id, Book book)
         {
             if (id != book.Id) return BadRequest();
@@ -55,6 +60,7 @@ namespace Library.Controllers
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
             await _repository.Insert(book);
@@ -64,6 +70,7 @@ namespace Library.Controllers
 
         // DELETE: api/Books/5
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteBook(int id)
         {
             var book = await _repository.GetById(id);

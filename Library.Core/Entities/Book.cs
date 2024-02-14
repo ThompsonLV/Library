@@ -14,8 +14,8 @@ namespace Library.Entities
 
         public Domain? Domain { get; set; } = null!;
 
-        readonly List<Rentail> _rentails = new List<Rentail>();
-        public IReadOnlyCollection<Rentail> Rentails => _rentails.AsReadOnly();
+        readonly List<Rental> _rentals = new List<Rental>();
+        public IReadOnlyCollection<Rental> Rentals => _rentals.AsReadOnly();
 
     }
 }

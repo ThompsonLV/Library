@@ -17,7 +17,7 @@ namespace Library.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -55,6 +55,39 @@ namespace Library.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Adresses");
+                });
+
+            modelBuilder.Entity("Library.Entities.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Firstname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lastname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admin");
                 });
 
             modelBuilder.Entity("Library.Entities.Author", b =>
@@ -183,7 +216,7 @@ namespace Library.Migrations
                     b.ToTable("Lectors");
                 });
 
-            modelBuilder.Entity("Library.Entities.Rentail", b =>
+            modelBuilder.Entity("Library.Entities.Rental", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -191,10 +224,10 @@ namespace Library.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BookId")
+                    b.Property<int?>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LectorId")
+                    b.Property<int?>("LectorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RentailDate")
@@ -242,19 +275,15 @@ namespace Library.Migrations
                     b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("Library.Entities.Rentail", b =>
+            modelBuilder.Entity("Library.Entities.Rental", b =>
                 {
                     b.HasOne("Library.Entities.Book", "Book")
-                        .WithMany("Rentails")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Rentals")
+                        .HasForeignKey("BookId");
 
                     b.HasOne("Library.Entities.Lector", "Lector")
-                        .WithMany("Rentails")
-                        .HasForeignKey("LectorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Rentals")
+                        .HasForeignKey("LectorId");
 
                     b.Navigation("Book");
 
@@ -273,7 +302,7 @@ namespace Library.Migrations
 
             modelBuilder.Entity("Library.Entities.Book", b =>
                 {
-                    b.Navigation("Rentails");
+                    b.Navigation("Rentals");
                 });
 
             modelBuilder.Entity("Library.Entities.Domain", b =>
@@ -283,7 +312,7 @@ namespace Library.Migrations
 
             modelBuilder.Entity("Library.Entities.Lector", b =>
                 {
-                    b.Navigation("Rentails");
+                    b.Navigation("Rentals");
                 });
 #pragma warning restore 612, 618
         }
