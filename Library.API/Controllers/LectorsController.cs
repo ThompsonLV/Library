@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Library.Entities;
 using Library.Infrastructure.Data;
+using SeedWork;
 using Library.Specifications;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library.Controllers
 {
@@ -16,14 +18,17 @@ namespace Library.Controllers
     public class LectorsController : ControllerBase
     {
         private readonly IRepository<Lector> _repository;
+        private readonly IRepository<Address> _repoAddress;
 
-        public LectorsController(IRepository<Lector> repo)
+        public LectorsController(IRepository<Lector> repo, IRepository<Address> repoAddress)
         {
             _repository = repo;
+            _repoAddress = repoAddress;
         }
 
         // GET: api/Lectors
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IEnumerable<Lector>> GetLectors()
         {
 
@@ -32,17 +37,19 @@ namespace Library.Controllers
 
         // GET: api/Lectors/5
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Lector>> GetLector(int id)
         {
-            var Lector = await _repository.GetSingle(new LectorById(id));
+            var lector = await _repository.GetSingle(new LectorByIdWithRentailsAddress(id));
 
-            if (Lector == null) return NotFound();
+            if (lector == null) return NotFound();
 
-            return Lector;
+            return lector;
         }
 
         // PUT: api/Lectors/5
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PutLector(int id, Lector Lector)
         {
             if (id != Lector.Id) return BadRequest();
@@ -54,8 +61,11 @@ namespace Library.Controllers
 
         // POST: api/Lectors
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Lector>> PostLector(Lector Lector)
         {
+            var address = await _repoAddress.Insert(Lector.Address);
+            Lector.Address = address;
             await _repository.Insert(Lector);
 
             return CreatedAtAction("GetLector", new { id = Lector.Id }, Lector);
@@ -63,6 +73,7 @@ namespace Library.Controllers
 
         // DELETE: api/Lectors/5
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteLector(int id)
         {
             var Lector = await _repository.GetById(id);
