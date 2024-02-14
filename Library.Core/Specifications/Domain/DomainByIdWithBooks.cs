@@ -10,7 +10,7 @@ namespace Library.Specifications
     {
         public DomainByIdWithBooks(int id) : base(id)
         {
-            AddInclude(d => d.Books);
+            AddInclude(b => b.Books);
         }
     }
 }

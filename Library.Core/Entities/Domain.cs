@@ -6,9 +6,9 @@ namespace Library.Entities
     {
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
-        [JsonIgnore]
-        public List<Book> Books { get; set; }
-       // public IReadOnlyCollection<Book> Books => _books.AsReadOnly();
+
+        public List<Book> _books = new List<Book>();
+        public IReadOnlyCollection<Book> Books => _books.AsReadOnly();
 
     }
 }

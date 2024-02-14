@@ -15,21 +15,17 @@ public abstract class Specification<T> : ISpecification<T>
     public int Skip { get; private set; }
     public bool isPagingEnabled { get; private set; } = false;
 
-    protected Specification(Expression<Func<T, bool>> criteria)
-    {
+    protected Specification(Expression<Func<T, bool>> criteria) {
         Criteria = criteria;
     }
 
-    protected Specification()
-    {
+    protected Specification() {
     }
 
-    protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
-    {
+    protected virtual void AddInclude(Expression<Func<T, object>> includeExpression) {
         Includes.Add(includeExpression);
     }
-    protected virtual void AddInclude(string includeString)
-    {
+    protected virtual void AddInclude(string includeString) {
         IncludeStrings.Add(includeString);
     }
     protected virtual void ApplyPaging(int skip, int take)
