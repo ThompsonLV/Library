@@ -11,6 +11,7 @@ namespace Library.Infrastructure.Data
         public DbSet<Domain> Domains => Set<Domain>();
         public DbSet<Lector> Lectors => Set<Lector>();
         public DbSet<Rentail> Rentails => Set<Rentail>();
+        public DbSet<Admin> Admin => Set<Admin>();
 
         public LibraryContext(DbContextOptions<LibraryContext> options) : base(options) { } // à voir pourquoi ?
 

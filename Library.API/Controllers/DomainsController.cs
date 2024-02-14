@@ -27,7 +27,7 @@ namespace Library.API.Controllers
         public async Task<IEnumerable<Domain>> GetDomains()
         {   
 
-            return await _repository.ListAll();
+            return await _repository.List(new DomainListWithBooks());
         }
 
         // GET: api/Domains/5

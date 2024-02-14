@@ -11,6 +11,7 @@ namespace Library.Specifications
         public AuthorByIdWithBooks(int id) : base(id)
         {
             AddInclude(b => b.Books);
+            AddInclude("Books.Domain");
         }
     }
 }

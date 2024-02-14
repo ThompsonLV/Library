@@ -11,9 +11,9 @@ namespace Library.Specifications
     {
         public BookListWithAuthorDomainRentails(): base()
         {
-            AddInclude("Author");
-            AddInclude("Rentails");
-            AddInclude("Domain");
+            AddInclude(b => b.Author);
+            AddInclude(b => b.Rentails);
+            AddInclude(b => b.Domain);
         }
     }
 }

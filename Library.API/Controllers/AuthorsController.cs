@@ -27,7 +27,7 @@ namespace Library.Controllers
         public async Task<IEnumerable<Author>> GetAuthors()
         {
 
-            return await _repository.ListAll();
+            return await _repository.List(new AuthorListWhithBooks());
         }
 
         // GET: api/Authors/5
