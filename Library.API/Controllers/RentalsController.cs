@@ -61,10 +61,24 @@ namespace Library.API.Controllers
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Rental>> PostRental(Rental rental)
-        {
+        {   
+            rental.RentailDate = DateTime.Now;
             await _repository.Insert(rental);
 
             return CreatedAtAction("GetRental", new { id = rental.Id }, rental);
+        }
+        // POST: api/Rentals
+        [HttpPut("returnBook/{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult<Rental>> ReturnBook(int id, Rental rental)
+        {
+
+            if (id != rental.Id) return BadRequest();
+            rental.ReturnDate = DateTime.Now;
+            await _repository.Update(rental);
+
+            var rentalUpdated = await _repository.GetSingle(new RentalByIdWithBookLector(id));
+            return rentalUpdated;
         }
 
         // DELETE: api/Rentals/5
