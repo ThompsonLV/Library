@@ -61,7 +61,7 @@ namespace Library.Controllers
 
         // POST: api/Lectors
         [HttpPost]
-    
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Lector>> PostLector(Lector Lector)
         {
             var address = await _repoAddress.Insert(Lector.Address);
